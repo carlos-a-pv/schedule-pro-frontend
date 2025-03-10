@@ -5,22 +5,28 @@ import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { AdminServiceService } from '../../servicios/admin.service.service';
 import { CrearEmpleadoDTO } from '../../dto/crear-empleado-dto';
+import { ItemEmpleadoDTO } from '../../dto/item-empleado-dto';
 import Swal from 'sweetalert2';
+import { RouterModule } from '@angular/router';
 
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, CommonModule, ReactiveFormsModule ],
+  imports: [HeaderComponent, FooterComponent, CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  empleados!:ItemEmpleadoDTO [];
   showModal = false;
   crearEmpleadoForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder) { 
+
+  constructor(private formBuilder: FormBuilder, private adminService: AdminServiceService) { 
     this.crearFormulario();
+    this.empleados = [];
+    this.obtenerEmpleados();
   }
 
 
@@ -44,5 +50,9 @@ export class HomeComponent {
     //     Swal.fire()
     //   }
     // })
+  }
+
+  public obtenerEmpleados() {
+    this.adminService.obtenerEmpleados().subscribe({});
   }
 }

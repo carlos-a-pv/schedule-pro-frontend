@@ -72,13 +72,16 @@
         <div class="grid-header">Contacto</div>
         <div class="grid-header">Acciones</div>
         
-        <div class="grid-item">Carlos Perez</div>
-        <div class="grid-item">21 años</div>
-        <div  class="grid-item">Armenia</div>
-        <div  class="grid-item">Armenia</div>
-        <div  class="grid-item">
-            <img src="" alt="icono de opciones">
-        </div>
+        @for (item of empleados; track $index) {
+            <div class="grid-item">{{item.nombre}}</div>
+            <div class="grid-item">{{item.departamento}}</div>
+            <div class="grid-item">{{item.cargo}}</div>
+            <!-- <div class="grid-item">{{item.contacto}}</div> -->
+            <div class="grid-item">
+                <img src="" alt="icono de opciones">
+            </div>
+        }
+        
       </div>
 </main>
 

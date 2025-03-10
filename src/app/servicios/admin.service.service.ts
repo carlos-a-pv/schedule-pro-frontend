@@ -17,4 +17,8 @@ export class AdminServiceService {
   public crearEmpleado(empleado: CrearEmpleadoDTO): Observable<MensajeDTO> {
     return this.http.post<MensajeDTO>(this.adminURL + '/crear-empleado', empleado);
   }
+
+  public obtenerEmpleados(): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.adminURL}/listar-todo/`);
+  }
 }

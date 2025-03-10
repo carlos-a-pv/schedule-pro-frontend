@@ -1,6 +1,86 @@
-<header> </header>
+<app-header></app-header>
 <main>
-    <h1>Administración de </h1>
+    <div class="info">
+        <h1>Administración de Empleados</h1>
+        <p>Gestiona la información de los empleados de tu empresa</p>
+    </div>
+
+    <div class="stats">
+        <article>
+            <h2>Total empleados</h2>
+            <img src="" alt="">
+            <h1>6</h1>
+            <p>Empleados activos en la empresa</p>
+        </article>
+
+        <article>
+            <h2>Departamentos</h2>
+            <img src="" alt="">
+            <h1>5</h1>
+            <p>Areas de la organización</p>
+        </article>
+
+        <article>
+            <h2>Departamento principal</h2>
+            <img src="" alt="">
+            <h1>Ventas</h1>
+            <p>Departamento con más empleados</p>
+        </article>
+
+        <article>
+            <h2>Nuevos empleados</h2>
+            <img src="s" alt="">
+            <h1>+3</h1>
+            <p>Incorporados este mes</p>
+        </article>
+
+    </div>
+
+    <div class="management-employee">
+        <input type="text" placeholder="Buscar empleados...">
+        <!-- <input type="" value="Filtros" > -->
+
+        <button (click)="showModal = true">
+            <img src="" alt="">
+            Agregar Empleado
+        </button>
+    </div>
+
+    <div class="modal" *ngIf="showModal">
+        <div class="modal-content">
+          <h2>Agregar Nuevo Empleado</h2>
+          <form [formGroup]="crearEmpleadoForm" (ngSubmit)="addEmployee()">
+            <label>Nombre: <input type="text"></label>
+            <label>Apellido: <input type="text"></label> <br>
+            <label for="">Email <input type="email"></label>
+            <label for="">Telefono <input type="tel"></label><br>
+            <label for="">Departamento <input type="text"></label>
+            <label for="">Cargo <input type="text"></label> <br>
+            <label for="">Fecha de Contratación <input type="date"></label>
+
+            <br>
+            <button (click)="showModal = false">Cancelar</button>
+            <button type="submit" [disabled]="crearEmpleadoForm.invalid"> Agregar Empleado</button>
+          </form>
+        </div>
+      </div>
+
+    <div class="grid-container">
+        <div class="grid-header">Empleado</div>
+        <div class="grid-header">Departamento</div>
+        <div class="grid-header">Cargo</div>
+        <div class="grid-header">Contacto</div>
+        <div class="grid-header">Acciones</div>
+        
+        <div class="grid-item">Carlos Perez</div>
+        <div class="grid-item">21 años</div>
+        <div  class="grid-item">Armenia</div>
+        <div  class="grid-item">Armenia</div>
+        <div  class="grid-item">
+            <img src="" alt="icono de opciones">
+        </div>
+      </div>
 </main>
 
-<footer></footer>
+<app-footer></app-footer>
+

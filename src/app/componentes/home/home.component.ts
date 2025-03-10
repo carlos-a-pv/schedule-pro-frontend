@@ -26,7 +26,7 @@ export class HomeComponent {
   constructor(private formBuilder: FormBuilder, private adminService: AdminServiceService) { 
     this.crearFormulario();
     this.empleados = [];
-    this.obtenerEmpleados();
+    // this.obtenerEmpleados();
   }
 
 
@@ -52,7 +52,7 @@ export class HomeComponent {
     // })
   }
 
-  public obtenerEmpleados() {
-    this.adminService.obtenerEmpleados().subscribe({});
-  }
+  // public obtenerEmpleados() {
+  //   this.adminService.obtenerEmpleados().subscribe({});
+  // }
 }

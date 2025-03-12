@@ -9,7 +9,7 @@ import { MensajeDTO } from '../dto/mensaje-dto';
 })
 export class AdministradorService {
 
-  private adminURL = "onrender./api/usuario/administrador";
+  private adminURL = "schedulepro.onrender.com/api/usuario/administrador";
 
   constructor(private http:HttpClient) { }
 

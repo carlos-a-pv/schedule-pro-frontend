@@ -3,11 +3,11 @@ import { AbstractControlOptions, FormBuilder, FormControl, FormGroup, ReactiveFo
 import { CommonModule } from '@angular/common'; 
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
-import { AdminServiceService } from '../../servicios/admin.service.service';
 import { CrearEmpleadoDTO } from '../../dto/crear-empleado-dto';
 import { ItemEmpleadoDTO } from '../../dto/item-empleado-dto';
 import Swal from 'sweetalert2';
 import { RouterModule } from '@angular/router';
+import { AdministradorService } from '../../servicios/administrador.service';
 
 
 
@@ -23,7 +23,7 @@ export class HomeComponent {
   showModal = false;
   crearEmpleadoForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private adminService: AdminServiceService) { 
+  constructor(private formBuilder: FormBuilder, private adminService: AdministradorService) { 
     this.crearFormulario();
     this.empleados = [];
     // this.obtenerEmpleados();
@@ -34,7 +34,7 @@ export class HomeComponent {
     this.crearEmpleadoForm = this.formBuilder.group({
       nombre: ['', [Validators.required]],
       apellido: ['', [Validators.required]],
-      correo: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       telefono: ['', [Validators.required]],
       departamento: ['', [Validators.required]],
       cargo: ['', [Validators.required]],
@@ -45,11 +45,33 @@ export class HomeComponent {
 
   public addEmployee(){
     const crearEmpleadoDTO = this.crearEmpleadoForm.value as CrearEmpleadoDTO;
-    // this.adminService.crearEmpleado(crearEmpleadoDTO).subscribe({
-    //   next: (mensaje) => {
-    //     Swal.fire()
-    //   }
-    // })
+    // console.log(crearEmpleadoDTO);
+    this.adminService.crearEmpleado(crearEmpleadoDTO).subscribe({
+      next: (mensaje) => {
+        Swal.fire({
+          title: 'Cuenta creada',
+          text: 'La cuenta se ha creado correctamente',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        })
+        window.location.reload();
+      },
+      error: (error) => {
+        Swal.fire({
+          title: 'Error',
+          text: 'Ha ocurrido un error al crear la cuenta',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        })
+      }
+    })
+
+    this.showModal = false;
+  }
+
+  public cleanFields() {
+    this.crearEmpleadoForm.reset();
+    this.showModal = false;
   }
 
   // public obtenerEmpleados() {

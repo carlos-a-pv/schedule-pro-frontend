@@ -48,19 +48,39 @@
 
     <div class="modal" *ngIf="showModal">
         <div class="modal-content">
-          <h2>Agregar Nuevo Empleado</h2>
-          <form [formGroup]="crearEmpleadoForm" (ngSubmit)="addEmployee()">
-            <label>Nombre: <input type="text"></label>
-            <label>Apellido: <input type="text"></label> <br>
-            <label for="">Email <input type="email"></label>
-            <label for="">Telefono <input type="tel"></label><br>
-            <label for="">Departamento <input type="text"></label>
-            <label for="">Cargo <input type="text"></label> <br>
-            <label for="">Fecha de Contratación <input type="date"></label>
+          <h1>Agregar Nuevo Empleado</h1>
+          <form [formGroup]="crearEmpleadoForm" (ngSubmit)="addEmployee()" novalidate>
+            
+            <div class="form1">
+                <label for="name">Nombre:</label>
+                <label for="last-name">Apellido:</label><br>
+                <input type="text" id="name" formControlName="nombre">
+                <input type="text" id="last-name" formControlName="apellido">
+            </div>
+            
+            <div class="form1">
+                <label for="">Email</label>
+                <label for="">Telefono</label><br>
+                <input type="email" formControlName="email">
+                <input type="tel" formControlName="telefono">
+            </div>
 
-            <br>
-            <button (click)="showModal = false">Cancelar</button>
-            <button type="submit" [disabled]="crearEmpleadoForm.invalid"> Agregar Empleado</button>
+            <div class="form1">
+                <label for="">Departamento</label>
+                <label for="">Cargo</label> <br>
+                <input type="text" formControlName="departamento">
+                <input type="text" formControlName="cargo">
+            </div>
+            
+            <div class="form1">
+                <label for="">Fecha de Contratación </label> <br>
+                <input type="date" formControlName="fechaContratacion">
+            </div>
+            
+            <div class="container-buttons">
+                <button type="button" (click)="cleanFields()">Cancelar</button>
+                <button class="add-employee" type="submit" [disabled]="crearEmpleadoForm.invalid"> Agregar Empleado</button>
+            </div>
           </form>
         </div>
       </div>
@@ -83,6 +103,8 @@
         }
         
       </div>
+
+      
 </main>
 
 <app-footer></app-footer>

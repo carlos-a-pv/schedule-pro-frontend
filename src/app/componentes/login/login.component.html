@@ -2,24 +2,24 @@
     <div class="container-second">
 
         <img src="/images/schedule-pro.svg" alt="icono de calendario" width="100px" height="100px">
-        <h1>Bienvenido</h1>
+        <h1>Schedule Pro</h1>
         <p>Inicia sesión para acceder al sistema de administración</p>
     
-        <form action="">
+        <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
             <label for="">Correo electronico</label>
-            <input type="email" placeholder="correo@empresa.com">
+            <input type="email" placeholder="correo@empresa.com" formControlName="email">
             <div class="password">
                 <label for="">Contraseña</label>
                 <a href="#">
                     <p>¿Olvidaste tu contraseña?</p>
                 </a>
             </div>
-            <input type="password" placeholder="······">
+            <input type="password" placeholder="······" formControlName="password">
     
             <!-- <input type="checkbox" id="recordar" class="recordar">
             <label for="recordar">Recordar contraseña</label> -->
     
-            <button>Iniciar sesión</button>
+            <button type="submit" [disabled]="loginForm.invalid">Iniciar sesión</button>
     
             <p>---------------------------------------------------------o continúa con----------------------------------------------</p>
     

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { CrearEmpleadoDTO } from '../dto/crear-empleado-dto';
 import { Observable } from 'rxjs';
 import { MensajeDTO } from '../dto/mensaje-dto';
+import { ItemEmpleadoDTO } from '../dto/item-empleado-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -16,4 +17,9 @@ export class AdministradorService {
   public crearEmpleado(crearEmpleadoDTO: CrearEmpleadoDTO): Observable<MensajeDTO> {
     return this.http.post<MensajeDTO>(`${this.adminURL}/crear-evento`, crearEmpleadoDTO);
   }
+
+  public obtenerEmpleados(): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.adminURL}/listar-todo`);
+  }
+
 }

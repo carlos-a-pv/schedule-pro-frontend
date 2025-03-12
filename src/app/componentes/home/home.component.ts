@@ -25,7 +25,7 @@ export class HomeComponent {
 
   constructor(private formBuilder: FormBuilder, private adminService: AdministradorService) { 
     this.crearFormulario();
-    this.empleados = [];
+    this.obtenerEmpleados();
     // this.obtenerEmpleados();
   }
 
@@ -72,6 +72,22 @@ export class HomeComponent {
   public cleanFields() {
     this.crearEmpleadoForm.reset();
     this.showModal = false;
+  }
+
+  public obtenerEmpleados() {
+    this.adminService.obtenerEmpleados().subscribe({
+      next: (data) => {
+        this.empleados = data.respuesta;
+      },
+      error: (error) => {
+        Swal.fire({
+          title: 'Error',
+          text: 'Ha ocurrido un error al obtener los empleados',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        })
+      }
+    });
   }
 
   // public obtenerEmpleados() {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { AbstractControlOptions, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { CommonModule } from '@angular/common'; 
 import { HeaderComponent } from "../header/header.component";
@@ -8,25 +8,28 @@ import { ItemEmpleadoDTO } from '../../dto/item-empleado-dto';
 import Swal from 'sweetalert2';
 import { RouterModule } from '@angular/router';
 import { AdministradorService } from '../../servicios/administrador.service';
+import { MatDialog } from '@angular/material/dialog';
+import { OptionsComponent } from "../options/options.component";
 
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [HeaderComponent, FooterComponent, CommonModule, ReactiveFormsModule, RouterModule, OptionsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
   empleados!:ItemEmpleadoDTO [];
   showModal = false;
+  isOptionsOpen = false;
+  optionsPosition = {x: 0, y: 0};
   crearEmpleadoForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private adminService: AdministradorService) { 
+  constructor(private formBuilder: FormBuilder, private adminService: AdministradorService, private cdr : ChangeDetectorRef) { 
     this.crearFormulario();
     this.obtenerEmpleados();
-    // this.obtenerEmpleados();
   }
 
 
@@ -45,7 +48,6 @@ export class HomeComponent {
 
   public addEmployee(){
     const crearEmpleadoDTO = this.crearEmpleadoForm.value as CrearEmpleadoDTO;
-    // console.log(crearEmpleadoDTO);
     this.adminService.crearEmpleado(crearEmpleadoDTO).subscribe({
       next: (mensaje) => {
         Swal.fire({
@@ -75,22 +77,41 @@ export class HomeComponent {
   }
 
   public obtenerEmpleados() {
+    
     this.adminService.obtenerEmpleados().subscribe({
+      
+      
       next: (data) => {
         this.empleados = data.respuesta;
+
       },
       error: (error) => {
         Swal.fire({
           title: 'Error',
-          text: 'Ha ocurrido un error al obtener los empleados',
+          text: error.error.respuesta,
           icon: 'error',
           confirmButtonText: 'Aceptar'
         })
       }
     });
+
+    console.log(this.empleados)
   }
 
-  // public obtenerEmpleados() {
-  //   this.adminService.obtenerEmpleados().subscribe({});
-  // }
+ openOptions(event:MouseEvent){
+  const target = event.target as HTMLElement;
+  if(!target) return;  
+  this.isOptionsOpen = false; 
+  
+  const rect = target.getBoundingClientRect();
+  const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+  const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+  this.optionsPosition = {x: rect.left + scrollX, y: rect.top + scrollY};
+  this.isOptionsOpen = false;
+  this.cdr.detectChanges();
+  this.isOptionsOpen = true;
+ }
+
+
 }

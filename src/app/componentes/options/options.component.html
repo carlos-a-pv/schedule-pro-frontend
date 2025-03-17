@@ -1,0 +1,6 @@
+<div class="modal-overlay" *ngIf="isOpen"></div>
+
+<div class="modal" *ngIf="isOpen" [style.left.px]="position.x" [style.top.px]="position.y">
+    <p>Opciones disponibles</p>
+    <button (click)="closeModal()">Cerrar</button>
+</div>

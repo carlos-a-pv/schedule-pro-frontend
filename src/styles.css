@@ -13,3 +13,19 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+::ng-deep .no-padding-modal .mat-mdc-dialog-surface {
+    padding: 0 !important;
+    background: transparent !important; 
+    box-shadow: none !important; 
+    border-radius: 0 !important; 
+}
+
+/* También ajustamos el contenedor interno */
+    ::ng-deep .no-padding-modal .mat-mdc-dialog-inner-container {
+    padding: 0 !important;
+}

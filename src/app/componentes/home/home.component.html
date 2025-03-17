@@ -83,7 +83,7 @@
             </div>
           </form>
         </div>
-      </div>
+    </div>
 
     <div class="grid-container">
         <div class="grid-header">Empleado</div>
@@ -98,7 +98,7 @@
             <div class="grid-item">{{item.cargo}}</div>
             <!-- <div class="grid-item">{{item.contacto}}</div> -->
             <div class="grid-item">
-                <img src="/images/options.svg" alt="icono de opciones">
+                <img src="/images/options.svg" alt="icono de opciones" (click)="openOptions($event)">
             </div>
         }
 
@@ -110,10 +110,15 @@
             <div class="grid-item">Administrador de infraestructura</div>
             <div class="grid-item">carlospveranogmail.com - 314777766</div>
             <div class="grid-item">
-                <img src="/images/options.svg" alt="icono de opciones">
+                <img src="/images/options.svg" alt="icono de opciones" (click)="openOptions($event)"  >
             </div>
+
+        <app-options [isOpen]="isOptionsOpen" [position]="optionsPosition"></app-options>
         
-      </div>
+      </div>    
+
+      <!-- <button mat-raised-button color="primary" (click)="abrirModal()">Agregar Empleado</button> -->
+
 
       
 </main>

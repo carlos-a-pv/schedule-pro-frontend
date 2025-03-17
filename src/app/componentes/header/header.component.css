@@ -3,6 +3,7 @@ header {
     font-family: 'Roboto';
     padding: 20px;
     border-bottom: 1px solid #c7c7cc;
+    width: 100%;
 }
 
 nav {

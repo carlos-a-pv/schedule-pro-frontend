@@ -10,12 +10,12 @@ import { ItemEmpleadoDTO } from '../dto/item-empleado-dto';
 })
 export class AdministradorService {
 
-  private adminURL = "schedulepro.onrender.com/api/usuario/administrador";
+  private adminURL = "https://schedulepro.onrender.com/api/usuario/administrador";
 
   constructor(private http:HttpClient) { }
 
   public crearEmpleado(crearEmpleadoDTO: CrearEmpleadoDTO): Observable<MensajeDTO> {
-    return this.http.post<MensajeDTO>(`${this.adminURL}/crear-evento`, crearEmpleadoDTO);
+    return this.http.post<MensajeDTO>(`${this.adminURL}/crear-empleado`, crearEmpleadoDTO);
   }
 
   public obtenerEmpleados(): Observable<MensajeDTO> {

@@ -128,13 +128,20 @@
 }
 
 
-/* ESTILOS DE LA MODAL */
+.options {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 20%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.form1 {
-    /* display: flex;
-    flex-direction: row;
-    gap: 10px; */
-}
+
+/* ESTILOS DE LA MODAL */
 
 .form1 label{
     display: inline-block; 

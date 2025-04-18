@@ -51,6 +51,10 @@
           <h1>Agregar Nuevo Empleado</h1>
           <form [formGroup]="crearEmpleadoForm" (ngSubmit)="addEmployee()" novalidate>
             
+            <div>
+                <label for="cedula">Cedula</label>
+                <input type="text" formControlName="cedula">
+            </div>
             <div class="form1">
                 <label for="name">Nombre:</label>
                 <label for="last-name">Apellido:</label><br>
@@ -74,7 +78,7 @@
             
             <div class="form1">
                 <label for="">Fecha de Contratación </label> <br>
-                <input type="date" formControlName="fechaContratacion">
+                <input type="datetime-local" formControlName="fechaContratacion">
             </div>
             
             <div class="container-buttons">
@@ -96,32 +100,21 @@
             <div class="grid-item">{{item.nombre}}</div>
             <div class="grid-item">{{item.departamento}}</div>
             <div class="grid-item">{{item.cargo}}</div>
-            <!-- <div class="grid-item">{{item.contacto}}</div> -->
+            <div class="grid-item">{{item.email}}</div>
             <div class="grid-item">
-                <img src="/images/options.svg" alt="icono de opciones" (click)="openOptions($event)">
+                <img src="/images/options.svg" alt="icono de opciones" (click)="openOptions($event)" id="item.email">
+                <app-options 
+                    *ngIf="isOptionsOpen"
+                    [isOpen]="isOptionsOpen" 
+                    [position]="optionsPosition" 
+                    [idEmpleado]="item.email"
+                    (closeModalEvent)="isOptionsOpen = false; "
+                ></app-options>
             </div>
         }
-
-            <div class="grid-item">
-                <div class="avatar" ></div>
-                <h3>Carlos Perez</h3>
-            </div>
-            <div class="grid-item">T.I</div>
-            <div class="grid-item">Administrador de infraestructura</div>
-            <div class="grid-item">carlospveranogmail.com - 314777766</div>
-            <div class="grid-item">
-                <img src="/images/options.svg" alt="icono de opciones" (click)="openOptions($event)"  >
-            </div>
-
-        <app-options [isOpen]="isOptionsOpen" [position]="optionsPosition"></app-options>
         
       </div>    
-
-      <!-- <button mat-raised-button color="primary" (click)="abrirModal()">Agregar Empleado</button> -->
-
-
-      
 </main>
-
+    
 <app-footer></app-footer>
 

@@ -1,0 +1,42 @@
+<div class="modal" >
+    <div class="modal-content">
+      <h1>Editar Empleado</h1>
+      <form [formGroup]="actualizarEmpleadoForm" (ngSubmit)="updateEmployee()" novalidate>
+        
+        <div>
+            <label for="cedula">Cedula</label>
+            <input type="text" formControlName="cedula">
+        </div>
+        <div class="form1">
+            <label for="name">Nombre:</label>
+            <label for="last-name">Apellido:</label><br>
+            <input type="text" id="name" formControlName="nombre">
+            <input type="text" id="last-name" formControlName="apellido">
+        </div>
+        
+        <div class="form1">
+            <label for="">Email</label>
+            <label for="">Telefono</label><br>
+            <input type="email" formControlName="email">
+            <input type="tel" formControlName="telefono">
+        </div>
+
+        <div class="form1">
+            <label for="">Departamento</label>
+            <label for="">Cargo</label> <br>
+            <input type="text" formControlName="departamento">
+            <input type="text" formControlName="cargo">
+        </div>
+        
+        <div class="form1">
+            <label for="">Fecha de Contratación </label> <br>
+            <input type="datetime-local" formControlName="fechaContratacion">
+        </div>
+        
+        <div class="container-buttons">
+            <button type="button" (click)="cleanFields()">Cancelar</button>
+            <button class="add-employee" type="submit" [disabled]="actualizarEmpleadoForm.invalid"> Agregar Empleado</button>
+        </div>
+      </form>
+    </div>
+</div>

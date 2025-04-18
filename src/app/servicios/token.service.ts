@@ -46,7 +46,7 @@ export class TokenService {
     
   public logout(){
     window.sessionStorage.clear();
-    this.router.navigate(["/login"]).then(()=>{
+    this.router.navigate([""]).then(()=>{
       window.location.reload();
     });
   }

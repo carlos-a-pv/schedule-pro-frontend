@@ -6,11 +6,12 @@ import { LoginDTO } from '../../dto/login-dto';
 import { AuthService } from '../../servicios/auth.service';
 import { TokenService } from '../../servicios/token.service';
 import Swal from 'sweetalert2';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, CommonModule],
+  imports: [RouterModule, ReactiveFormsModule, CommonModule, NgxSpinnerModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -18,7 +19,7 @@ export class LoginComponent {
 
   loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private tokenService: TokenService) { 
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private tokenService: TokenService, private spinner: NgxSpinnerService) { 
     this.createFormLogin();
   }
 
@@ -30,6 +31,9 @@ export class LoginComponent {
   }
 
   public login(): void {
+
+    this.spinner.show();
+
     const loginDTO = this.loginForm.value as LoginDTO;
     
     this.authService.login(loginDTO).subscribe({
@@ -43,6 +47,9 @@ export class LoginComponent {
             text: error.error.respuesta
         });
       },
+      complete: () => {
+        this.spinner.hide();
+      }
     });
    
   }

@@ -6,7 +6,7 @@ import { FooterComponent } from "../footer/footer.component";
 import { CrearEmpleadoDTO } from '../../dto/crear-empleado-dto';
 import { ItemEmpleadoDTO } from '../../dto/item-empleado-dto';
 import Swal from 'sweetalert2';
-import { RouterModule } from '@angular/router';
+import { Router, RouterEvent, RouterModule } from '@angular/router';
 import { AdministradorService } from '../../servicios/administrador.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OptionsComponent } from "../options/options.component";
@@ -26,15 +26,18 @@ export class HomeComponent {
   isOptionsOpen = false;
   optionsPosition = {x: 0, y: 0};
   crearEmpleadoForm!: FormGroup;
+  optionsEmail: string | null = null;
 
   constructor(private formBuilder: FormBuilder, private adminService: AdministradorService, private cdr : ChangeDetectorRef) { 
     this.crearFormulario();
+    this.empleados = [];
     this.obtenerEmpleados();
   }
 
 
   private crearFormulario() {
     this.crearEmpleadoForm = this.formBuilder.group({
+      cedula: ['', [Validators.required]],
       nombre: ['', [Validators.required]],
       apellido: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -57,6 +60,7 @@ export class HomeComponent {
           confirmButtonText: 'Aceptar'
         })
         window.location.reload();
+
       },
       error: (error) => {
         Swal.fire({
@@ -77,13 +81,9 @@ export class HomeComponent {
   }
 
   public obtenerEmpleados() {
-    
     this.adminService.obtenerEmpleados().subscribe({
-      
-      
       next: (data) => {
-        this.empleados = data.respuesta;
-
+        this.empleados = data;
       },
       error: (error) => {
         Swal.fire({
@@ -94,11 +94,12 @@ export class HomeComponent {
         })
       }
     });
-
-    console.log(this.empleados)
   }
 
  openOptions(event:MouseEvent){
+
+  // this.optionsEmail = email;
+
   const target = event.target as HTMLElement;
   if(!target) return;  
   this.isOptionsOpen = false; 

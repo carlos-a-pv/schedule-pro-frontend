@@ -1,6 +1,70 @@
 <div class="modal-overlay" *ngIf="isOpen"></div>
 
-<div class="modal" *ngIf="isOpen" [style.left.px]="position.x" [style.top.px]="position.y">
-    <p>Opciones disponibles</p>
-    <button (click)="closeModal()">Cerrar</button>
+<div class="modal" *ngIf="isOpen" [style.left.px]="position.x-100" [style.top.px]="position.y"  [ngStyle]="{width: '200px', height: 'auto'}">
+    
+    <ul>
+        <div class="container-update" (click)="updateEmployee($event)">
+            <img src="/images/edit.gif" alt="" width="20px" height="20px">
+            <li>Editar </li>
+        </div>
+
+        <app-update *ngIf="isUpdateOpen" (closeModalEvent)="handleUpdateClose()"></app-update>
+
+        <div class="container-delete" (click)="deleteEmployee($event)">
+            <img src="/images/delete.svg" alt="" width="20px" height="20px">
+            <li>Eliminar</li>
+        </div>
+        <app-delete *ngIf="isDeleteOpen" (closeModalEvent)="handleDeleteClose()"></app-delete>
+
+        
+    </ul>
+    <!-- <button (click)="closeModal()">Cerrar</button> -->
+
+    <!-- <app-delete [empleado]="empleado"></app-delete> -->
+
+    <!-- <div class="modal-delete" *ngIf="showDeleteModal"> -->
+    
+
+    <!-- <div class="modal-update" *ngIf="showModal">
+        <div class="modal-content">
+          <h1>Actualizar Empleado</h1>
+          <form [formGroup]="actualizarEmpleado" (ngSubmit)="updateEmployee()" novalidate>
+            
+            <div>
+                <label for="cedula">Cedula</label>
+                <input type="text" formControlName="cedula" value="{{empleado.cedula}}" readonly>
+            </div>
+            <div class="form1">
+                <label for="name">Nombre:</label>
+                <label for="last-name">Apellido:</label><br>
+                <input type="text" id="name" formControlName="nombre">
+                <input type="text" id="last-name" formControlName="apellido">
+            </div>
+            
+            <div class="form1">
+                <label for="">Email</label>
+                <label for="">Telefono</label><br>
+                <input type="email" formControlName="email">
+                <input type="tel" formControlName="telefono">
+            </div>
+
+            <div class="form1">
+                <label for="">Departamento</label>
+                <label for="">Cargo</label> <br>
+                <input type="text" formControlName="departamento">
+                <input type="text" formControlName="cargo">
+            </div>
+            
+            <div class="form1">
+                <label for="">Fecha de Contratación </label> <br>
+                <input type="datetime-local" formControlName="fechaContratacion">
+            </div>
+            
+            <div class="container-buttons">
+                <button type="button" (click)="cleanFields()">Cancelar</button>
+                <button class="add-employee" type="submit" [disabled]="actualizarEmpleado.invalid"> Actualizar Empleado</button>
+            </div>
+          </form>
+        </div>
+    </div> -->
 </div>

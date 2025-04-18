@@ -1,0 +1,9 @@
+<div class="modal-overlay">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h2>¿Estás seguro de que deseas eliminar este empleado?</h2>
+      <div class="buttons">
+        <button class="btn-confirm" (click)="confirmDelete()">Sí, eliminar</button>
+        <button class="btn-cancel" (click)="cancelDelete()">Cancelar</button>
+      </div>
+    </div>
+  </div>

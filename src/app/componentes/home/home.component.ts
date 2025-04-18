@@ -26,7 +26,7 @@ export class HomeComponent {
   isOptionsOpen = false;
   optionsPosition = {x: 0, y: 0};
   crearEmpleadoForm!: FormGroup;
-  optionsEmail: string | null = null;
+  selectedEmployee: string | null = null;
 
   constructor(private formBuilder: FormBuilder, private adminService: AdministradorService, private cdr : ChangeDetectorRef) { 
     this.crearFormulario();
@@ -96,21 +96,18 @@ export class HomeComponent {
     });
   }
 
- openOptions(event:MouseEvent){
-
-  // this.optionsEmail = email;
-
-  const target = event.target as HTMLElement;
-  if(!target) return;  
-  this.isOptionsOpen = false; 
-  
-  const rect = target.getBoundingClientRect();
-  const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
-  const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-
-  this.optionsPosition = {x: rect.left + scrollX, y: rect.top + scrollY};
-  this.isOptionsOpen = false;
-  this.cdr.detectChanges();
+ openOptions(event:MouseEvent, email:string) {
+  event.stopPropagation();
+   const target = event.target as HTMLElement;
+   if(!target) return;  
+   
+   const rect = target.getBoundingClientRect();
+   const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+   const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+   
+   this.optionsPosition = {x: rect.left + scrollX, y: rect.top + scrollY};
+   this.cdr.detectChanges();
+   this.selectedEmployee = email;
   this.isOptionsOpen = true;
  }
 

@@ -102,13 +102,13 @@
             <div class="grid-item">{{item.cargo}}</div>
             <div class="grid-item">{{item.email}}</div>
             <div class="grid-item">
-                <img src="/images/options.svg" alt="icono de opciones" (click)="openOptions($event)" id="item.email">
+                <img src="/images/options.svg" alt="icono de opciones" (click)="openOptions($event, item.email); $event.stopPropagation()">
                 <app-options 
-                    *ngIf="isOptionsOpen"
+                    *ngIf="selectedEmployee === item.email"
                     [isOpen]="isOptionsOpen" 
                     [position]="optionsPosition" 
                     [idEmpleado]="item.email"
-                    (closeModalEvent)="isOptionsOpen = false; "
+                    (closeModalEvent)="selectedEmployee = null; isOptionsOpen = false"
                 ></app-options>
             </div>
         }

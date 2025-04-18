@@ -30,8 +30,13 @@ export class OptionsComponent {
 
   @Output() closeModalEvent = new EventEmitter<void>();
 
+  ngOnInit() {
+    // console.log("Empleado recibido:", this.idEmpleado);
+    // Puedes usar this.idEmpleado aquí sin problemas
+  }
+
   constructor(private elementRef: ElementRef, private adminService:AdministradorService,private cdr: ChangeDetectorRef ) { 
-    console.log("Usuario elegido:" + this.idEmpleado);
+    // console.log("Usuario elegido:" + this.idEmpleado);
     // console.log(this.idEmpleado);
 
   }
@@ -40,8 +45,8 @@ export class OptionsComponent {
     onClickOutside(event: MouseEvent) {
     const clickedInside = this.elementRef.nativeElement.contains(event.target);
     
-    if (!clickedInside && !this.bloquearCierre) {
-      this.closeModalEvent.emit();
+    if (clickedInside && !this.bloquearCierre) {
+      this.handleOptionsClose();
     }
 }
 
@@ -61,6 +66,7 @@ export class OptionsComponent {
 
   public handleOptionsClose(){
     this.selectedEmpleadoEmail = null;
+    this.closeModalEvent.emit();
 
   }
 

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AdministradorService } from '../../servicios/administrador.service';
 import { CommonModule } from '@angular/common';
@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 })
 export class UpdateComponent {
   actualizarEmpleadoForm!: FormGroup;
+  @Output() closeModalEvent = new EventEmitter<void>();
 
   constructor(private formBuilder: FormBuilder, private adminService: AdministradorService, private cdr : ChangeDetectorRef) {
     this.crearFormulario(); 
@@ -34,6 +35,8 @@ export class UpdateComponent {
 
   public cleanFields() {
     this.actualizarEmpleadoForm.reset();
+    this.closeModalEvent.emit();
+    
   }
 
   public updateEmployee() {}

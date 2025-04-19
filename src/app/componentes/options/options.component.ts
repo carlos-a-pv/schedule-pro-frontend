@@ -18,7 +18,7 @@ export class OptionsComponent {
 
   @Input() isOpen = false;
   @Input() position = {x: 0 , y: 0};
-  @Input() idEmpleado!:any;
+  @Input() idEmpleado!:string;
   showModal = false;
   actualizarEmpleado!: FormGroup;
   empleado!: any;
@@ -31,6 +31,7 @@ export class OptionsComponent {
   @Output() closeModalEvent = new EventEmitter<void>();
 
   ngOnInit() {
+    // console.log("ID empleado recibido:", this.idEmpleado);
     // console.log("Empleado recibido:", this.idEmpleado);
     // Puedes usar this.idEmpleado aquí sin problemas
   }

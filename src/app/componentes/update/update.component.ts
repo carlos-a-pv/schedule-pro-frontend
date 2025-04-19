@@ -1,8 +1,11 @@
-import { ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AdministradorService } from '../../servicios/administrador.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ItemEmpleadoDTO } from '../../dto/item-empleado-dto';
+import Swal from 'sweetalert2';
+import { ActulizarEmpleadoDTO } from '../../dto/actualizar-empleado-dto';
 
 @Component({
   selector: 'app-update',
@@ -13,10 +16,17 @@ import { RouterModule } from '@angular/router';
 })
 export class UpdateComponent {
   actualizarEmpleadoForm!: FormGroup;
+  @Input() idEmpleado!:string;
   @Output() closeModalEvent = new EventEmitter<void>();
 
+  empleado !: ItemEmpleadoDTO;
+
+  ngOnInit() {
+    this.obtenerEmpleadoPorId(this.idEmpleado); 
+  }
+
   constructor(private formBuilder: FormBuilder, private adminService: AdministradorService, private cdr : ChangeDetectorRef) {
-    this.crearFormulario(); 
+    this.crearFormulario();
   }
 
     private crearFormulario() {
@@ -39,5 +49,49 @@ export class UpdateComponent {
     
   }
 
-  public updateEmployee() {}
+  public obtenerEmpleadoPorId(idEmpleado: string) {
+    this.adminService.obtenerEmpleadoPorId(idEmpleado).subscribe({
+      next: (response) => {
+        this.empleado = response.respuesta;
+        this.actualizarEmpleadoForm.patchValue({
+          cdeula: this.empleado.cedula,
+          nombre: this.empleado.nombre,
+          apellido: this.empleado.apellido,
+          email: this.empleado.email,
+          telefono: this.empleado.telefono,
+          departamento: this.empleado.departamento,
+          cargo: this.empleado.cargo,
+          fechaContratacion: this.empleado.fechaContratacion
+        });
+      },
+      error: (error) => {
+        console.error('Error al obtener el empleado:', error);
+      }
+    })
+  }
+
+  public updateEmployee() {
+    const actualizarEmpleadoDTO = this.actualizarEmpleadoForm.value as ActulizarEmpleadoDTO;
+        this.adminService.actualizarEmpleado(actualizarEmpleadoDTO).subscribe({
+          next: (mensaje) => {
+            Swal.fire({
+              title: 'Cuenta actulizada',
+              text: 'La cuenta se ha actualizado correctamente',
+              icon: 'success',
+              confirmButtonText: 'Aceptar'
+            })
+            window.location.reload();
+    
+          },
+          error: (error) => {
+            Swal.fire({
+              title: 'Error',
+              text: 'Ha ocurrido un error al actualizar la cuenta',
+              icon: 'error',
+              confirmButtonText: 'Aceptar'
+            })
+          }
+        })
+  }
+    
 }

@@ -8,7 +8,7 @@
             <li>Editar </li>
         </div>
 
-        <app-update *ngIf="isUpdateOpen" (closeModalEvent)="handleUpdateClose()"></app-update>
+        <app-update *ngIf="isUpdateOpen" (closeModalEvent)="handleUpdateClose()" [idEmpleado]="idEmpleado"></app-update>
 
         <div class="container-delete" (click)="deleteEmployee($event)">
             <img src="/images/delete.svg" alt="" width="20px" height="20px">

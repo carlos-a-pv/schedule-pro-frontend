@@ -5,7 +5,7 @@
         
         <div>
             <label for="cedula">Cedula</label>
-            <input type="text" formControlName="cedula">
+            <input type="text" formControlName="cedula" >
         </div>
         <div class="form1">
             <label for="name">Nombre:</label>
@@ -35,7 +35,7 @@
         
         <div class="container-buttons">
             <button type="button" (click)="cleanFields()">Cancelar</button>
-            <button class="add-employee" type="submit" [disabled]="actualizarEmpleadoForm.invalid"> Agregar Empleado</button>
+            <button class="add-employee" type="submit" [disabled]="actualizarEmpleadoForm.invalid">Actualizar Empleado</button>
         </div>
       </form>
     </div>

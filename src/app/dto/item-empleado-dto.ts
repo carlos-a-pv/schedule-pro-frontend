@@ -1,4 +1,5 @@
 export interface ItemEmpleadoDTO {
+    id:string;
     cedula:string;
     nombre:string;
     apellido:string;
@@ -6,4 +7,5 @@ export interface ItemEmpleadoDTO {
     email:string;
     departamento:string;
     cargo:string;
+    fechaContratacion:Date;
 }

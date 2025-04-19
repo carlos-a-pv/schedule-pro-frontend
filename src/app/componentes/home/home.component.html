@@ -107,7 +107,7 @@
                     *ngIf="selectedEmployee === item.email"
                     [isOpen]="isOptionsOpen" 
                     [position]="optionsPosition" 
-                    [idEmpleado]="item.email"
+                    [idEmpleado]="item.id"
                     (closeModalEvent)="selectedEmployee = null; isOptionsOpen = false"
                 ></app-options>
             </div>

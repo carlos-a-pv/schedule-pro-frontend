@@ -39,6 +39,7 @@ export class AdministradorService {
 
   public obtenerEmpleadoPorId(id: string): Observable<MensajeDTO> {
     return this.http.get<MensajeDTO>(`${this.adminURL}/obtener-empleado/${id}`);
+
   }
 
 }

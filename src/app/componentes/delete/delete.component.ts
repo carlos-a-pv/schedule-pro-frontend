@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class DeleteComponent {
   @Input() isDeleteOpen = false;
-  @Input() empleado: any;
+  @Input() idEmpleado!: any;
   @Output() closeModalEvent = new EventEmitter<void>();
   
   constructor(private adminService: AdministradorService ) { }
@@ -24,7 +24,7 @@ export class DeleteComponent {
   }
 
   confirmDelete(){
-    const employeeId = this.empleado.id as EliminarEmpleadoDTO;
+    const employeeId = this.idEmpleado as EliminarEmpleadoDTO;
     console.log(employeeId)
     this.adminService.eliminarEmpleado(employeeId).subscribe({
       next: (mensaje) => {

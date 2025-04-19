@@ -14,7 +14,7 @@
             <img src="/images/delete.svg" alt="" width="20px" height="20px">
             <li>Eliminar</li>
         </div>
-        <app-delete *ngIf="isDeleteOpen" (closeModalEvent)="handleDeleteClose()"></app-delete>
+        <app-delete *ngIf="isDeleteOpen" (closeModalEvent)="handleDeleteClose()" [idEmpleado]="idEmpleado"></app-delete>
 
         
     </ul>

@@ -1,3 +1,25 @@
 * {
     margin:0;
 }
+
+.fc-daygrid-day-frame {
+    position: relative;
+}
+
+.fc-daygrid-day-frame::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0;
+    font-size: 1.5rem;
+    color: #333;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.fc-daygrid-day-frame:hover::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}

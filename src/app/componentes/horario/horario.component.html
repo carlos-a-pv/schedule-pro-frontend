@@ -1,0 +1,33 @@
+<app-header></app-header>
+<div class="main-container"> 
+    <h1>Asignación de Horarios</h1>
+    <p>Asigna horarios a los empleados haciendo lcic en las celdas del calendario</p>
+    <div class="info-container">
+        <section>
+            <img src="" alt="">
+            <p>
+                Total asignaciones : {{ totalAsignaciones }}
+            </p> 
+        </section>
+        <section>
+            <img src="" alt="">
+            <p>
+                Horas asignadas : {{ horasAsignadas }}
+            </p>
+        </section>
+        <section>
+            <img src="" alt="">
+            <p>
+                Empleados Programados: {{ empleadosAsignados }}
+            </p> 
+        </section>
+
+    </div>
+    <div class="schedule-container">
+        <full-calendar [options]="calendarOptions"></full-calendar>
+    </div>
+
+    <app-asignacion-horario 
+        *ngIf="verAsignacion"
+    ></app-asignacion-horario>
+</div>

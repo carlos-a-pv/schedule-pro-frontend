@@ -6,8 +6,16 @@
         </div>
         <div class="container-items">
             <ul>
-                <li>Dashboard</li>
-                <li>Horarios</li>
+                <li>
+                    <a routerLink="/dashboard">
+                        Dashboard
+                    </a>    
+                </li>
+                <li>
+                    <a routerLink="/horarios" routerLinkActive="active">
+                        Horarios
+                    </a>
+                </li>
                 <li>Reportes</li>
                 <li>Configuración</li>
                 <!-- <li>
@@ -16,7 +24,7 @@
                     </a>
                 </li> -->
                 <li>
-                    <a routerLink="/login" (click)="logout()" >
+                    <a (click)="logout()" >
                         <img src="/images/logout.svg" alt="">
                     </a>
                 </li>

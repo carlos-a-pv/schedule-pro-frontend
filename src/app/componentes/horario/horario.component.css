@@ -1,0 +1,36 @@
+.schedule-container {
+    display: flex;
+    
+}
+.schedule-container full-calendar {
+    /* background-color: red; */
+    width: 80%;
+    margin: 0 auto;
+}
+
+.schedule-container full-calendar:hover {
+    cursor: pointer;
+}
+
+.hover-cell {
+    position: relative;
+    transition: background-color 0.3s;
+}
+  
+.hover-cell::after {
+    content: '+';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+    font-size: 1.5rem;
+    color: #555;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.hover-cell:hover::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}

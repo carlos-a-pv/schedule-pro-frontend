@@ -1,0 +1,33 @@
+<div class="modal">
+    <div class="modal-content">
+    <h1>Nueva Aginacion</h1>
+      <form [formGroup]="asignarHorarioForm" (ngSubmit)="addAsignacion()" novalidate>
+        
+        <div>
+            <label for="cedula">Fecha</label>
+            <input type="date" formControlName="fecha">
+        </div>
+
+        <div class="form1">
+            <label for="name">Empleado:</label>
+            <select name="" id="">
+                <option value="">Seleccione un empleado</option>
+                <option *ngFor="let empleado of empleados" [value]="empleado.id">{{empleado.nombre}} {{empleado.apellido}}</option>
+            </select>
+            
+        </div>
+        
+        <div class="form1">
+            <label for="">Hora inicio</label>
+            <label for="">Hora fin</label><br>
+            <input type="time" formControlName="horaInicio">
+            <input type="time" formControlName="horaFin">
+        </div>
+        
+        <div class="container-buttons">
+            <button type="button" (click)="cleanFields()">Cancelar</button>
+            <button class="add-employee" type="submit" [disabled]="asignarHorarioForm.invalid"> Crear Asignación</button>
+        </div>
+      </form>
+    </div>
+</div>

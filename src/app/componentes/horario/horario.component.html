@@ -29,7 +29,7 @@
 
     <app-asignacion-horario 
         *ngIf="verAsignacion"
-        (closeModalEvent)="verAsignacion = false"
+        (closeModalEvent)="verAsignacion = false; this.obtenerTurnos()"
         [fechaSeleccionada]="fechaSeleccionada"
     ></app-asignacion-horario>
 

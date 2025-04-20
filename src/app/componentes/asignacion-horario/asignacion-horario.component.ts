@@ -3,6 +3,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AdministradorService } from '../../servicios/administrador.service';
 import { ItemEmpleadoDTO } from '../../dto/item-empleado-dto';
+import { parse } from 'date-fns';
+import { es } from 'date-fns/locale';
+import { AsignarTurnoDTO } from '../../dto/asignar-turno-dto';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-asignacion-horario',
@@ -25,9 +29,9 @@ export class AsignacionHorarioComponent {
 
   private crearFormulario() {
     this.asignarHorarioForm = this.formBuilder.group({
-          horaInicio: ['', [Validators.required]],
-          horaFin: ['', [Validators.required]],
-          empleado: ['', [Validators.required]],
+          idEmpleado: ['', [Validators.required]],
+          horaEntrada: ['', [Validators.required]],
+          horaSalida: ['', [Validators.required]],
           
         });
 
@@ -40,7 +44,27 @@ export class AsignacionHorarioComponent {
   }
 
   public addAsignacion() {
+    const crearTurnoDTO = this.asignarHorarioForm.value as AsignarTurnoDTO;
+    const añoActual = new Date().getFullYear();
 
+    const fechaDate = parse(this.fechaSeleccionada + ` ${añoActual}`, "EEEE, d 'de' MMMM yyyy", new Date(), { locale: es });
+    crearTurnoDTO.fechaTurno = fechaDate;
+    crearTurnoDTO.sede = "Sede "+Math.floor(Math.random() * 10);
+
+    console.log(crearTurnoDTO);
+    this.adminService.asignarTurno(crearTurnoDTO).subscribe({
+      next: () => {
+        this.asignarHorarioForm.reset();
+        this.closeModalEvent.emit();
+      },
+      error: (error) => {
+        this.closeModalEvent.emit();
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo asignar el turno.', 
+      });
+    }});
   }
 
   public obtenerEmpleados() {

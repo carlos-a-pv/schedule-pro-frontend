@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { MensajeDTO } from '../dto/mensaje-dto';
 import { ItemEmpleadoDTO } from '../dto/item-empleado-dto';
 import { EliminarEmpleadoDTO } from '../dto/eliminar-empleado-dto';
+import { AsignarTurnoDTO } from '../dto/asignar-turno-dto';
+import { itemTurnoDTO } from '../dto/item-turno-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +41,15 @@ export class AdministradorService {
 
   public obtenerEmpleadoPorId(id: string): Observable<MensajeDTO> {
     return this.http.get<MensajeDTO>(`${this.adminURL}/obtener-empleado/${id}`);
+  }
 
+  //MANEJO DE TURNOS
+  public asignarTurno(turnoDTO: AsignarTurnoDTO): Observable<MensajeDTO> {
+    return this.http.post<MensajeDTO>(`${this.adminURL}/asignar-turno`, turnoDTO);
+  }
+
+  public obtenerTurnos(): Observable<itemTurnoDTO[]> {
+    return this.http.get<itemTurnoDTO[]>(`${this.adminURL}/listar-turnos`);
   }
 
 }

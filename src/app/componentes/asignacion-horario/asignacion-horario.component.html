@@ -5,14 +5,14 @@
         
         <div>
             <label for="fecha">Fecha</label><br>
-            <input type="text" formControlName="fecha" value="{{fechaSeleccionada}}">
+            <input type="text"  value="{{fechaSeleccionada}}">
         </div>
 
         <div>
             <label for="name">Empleado:</label><br>
-            <select name="" id="" formControlName="empleado">
+            <select name="" id="" formControlName="idEmpleado">
                 <option value="">Seleccione un empleado</option>
-                <option *ngFor="let empleado of empleados" [value]="empleado.id">{{empleado.nombre}} {{empleado.apellido}}</option>
+                <option *ngFor="let empleado of empleados" [value]="empleado.id">{{empleado.email}}</option>
             </select>
             
         </div>
@@ -20,8 +20,8 @@
         <div >
             <label for="">Hora inicio</label>
             <label for="">Hora fin</label><br>
-            <input type="time" formControlName="horaInicio">
-            <input type="time" formControlName="horaFin">
+            <input type="time" formControlName="horaEntrada">
+            <input type="time" formControlName="horaSalida">
         </div>
         
         <div class="container-buttons">

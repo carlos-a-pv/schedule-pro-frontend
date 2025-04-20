@@ -11,6 +11,7 @@ import { format } from 'date-fns'
 import { EdicionHorarioComponent } from "../edicion-horario/edicion-horario.component";
 import { itemTurnoDTO } from '../../dto/item-turno-dto';
 import { AdministradorService } from '../../servicios/administrador.service';
+import { ItemEmpleadoDTO } from '../../dto/item-empleado-dto';
 
 @Component({
   selector: 'app-horario',
@@ -28,6 +29,7 @@ export class HorarioComponent {
   verAsignacion: boolean = false;
   verEdicion: boolean = false;
   fechaSeleccionada!: string;
+  eventoSeleccionado: itemTurnoDTO = {} as itemTurnoDTO;
 
   eventList: itemTurnoDTO[] = []
 
@@ -78,14 +80,19 @@ export class HorarioComponent {
 
   handleEventClick(info: any) {
     const clickedDate = new Date(info.event.startStr);
-    console.log(clickedDate);
     const today = new Date();
-
+    
     clickedDate.setHours(0, 0, 0, 0);
     today.setHours(0, 0, 0, 0);
-
-    if (clickedDate >= today) {
+    
+    if (clickedDate > today) {
+      const evento = this.findEventById(info.event.id);
+      if (evento) {
+        this.eventoSeleccionado = evento;
+      }
       this.verEdicion = true;
+      const fechaLocal = new Date(clickedDate.getFullYear(), clickedDate.getMonth(), clickedDate.getDate()+1)
+      this.fechaSeleccionada = format(fechaLocal, "EEEE, d 'de' MMMM", { locale: es });
       // const fechaLocal = new Date(clickedDate.getFullYear(), clickedDate.getMonth(), clickedDate.getDate()+1)
       // this.fechaSeleccionada = format(fechaLocal, "EEEE, d 'de' MMMM", { locale: es });
     }
@@ -96,6 +103,7 @@ export class HorarioComponent {
       next: (response) => {
         this.eventList = response;
         this.calendarOptions.events = this.eventList.map(event => ({
+          id: event.idTurno,
           title: event.horaEntrada.slice(0,2) + "-" + event.horaSalida.slice(0,2)+": " + event.nombreEmpleado,
           start: event.fechaTurno,
           end: event.fechaTurno,
@@ -106,5 +114,9 @@ export class HorarioComponent {
         console.error('Error al obtener los turnos:', error);
       }
     });
+  }
+
+  findEventById(id: string): itemTurnoDTO | undefined {
+    return this.eventList.find(event => event.idTurno === id);
   }
 }

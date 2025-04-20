@@ -25,7 +25,6 @@ export class DeleteComponent {
 
   confirmDelete(){
     const employeeId = this.idEmpleado as EliminarEmpleadoDTO;
-    console.log(employeeId)
     this.adminService.eliminarEmpleado(employeeId).subscribe({
       next: (mensaje) => {
         Swal.fire({

@@ -35,6 +35,8 @@
 
     <app-edicion-horario
         *ngIf="verEdicion"
-        (closeModalEvent)="verEdicion = false"
+        [eventoSeleccionado]="eventoSeleccionado"
+        [fechaSeleccionada]="fechaSeleccionada"
+        (closeModalEvent)="verEdicion = false; this.obtenerTurnos()"
     ></app-edicion-horario>
 </div>

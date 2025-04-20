@@ -7,6 +7,8 @@ import { ItemEmpleadoDTO } from '../dto/item-empleado-dto';
 import { EliminarEmpleadoDTO } from '../dto/eliminar-empleado-dto';
 import { AsignarTurnoDTO } from '../dto/asignar-turno-dto';
 import { itemTurnoDTO } from '../dto/item-turno-dto';
+import { actualizarTurnoDTO } from '../dto/actualizar-turno-dto';
+import { EliminarTurnoDTO } from '../dto/eliminar-turno-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +52,18 @@ export class AdministradorService {
 
   public obtenerTurnos(): Observable<itemTurnoDTO[]> {
     return this.http.get<itemTurnoDTO[]>(`${this.adminURL}/listar-turnos`);
+  }
+
+  public obtenerTurnoPorId(id: string): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.adminURL}/obtener-turno/${id}`);
+  }
+
+  public editarTurno(turnoDTO: actualizarTurnoDTO): Observable<MensajeDTO> {
+    return this.http.put<MensajeDTO>(`${this.adminURL}/editar-turno`, turnoDTO);
+  }
+
+  public eliminarTurno(turnoDTO: EliminarTurnoDTO): Observable<MensajeDTO> {
+    return this.http.delete<MensajeDTO>(`${this.adminURL}/eliminar-turno`);
   }
 
 }

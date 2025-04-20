@@ -20,13 +20,14 @@
         <div >
             <label for="">Hora inicio</label>
             <label for="">Hora fin</label><br>
-            <input type="time" formControlName="horaInicio">
-            <input type="time" formControlName="horaFin">
+            <input type="time" formControlName="horaInicio" >
+            <input type="time" formControlName="horaFin" >
         </div>
         
         <div class="container-buttons">
             <button class="cancel" type="button" (click)="cleanFields()">Cancelar</button>
-            <button class="add-employee" type="submit" [disabled]="actualizarHorarioForm.invalid"> Crear Asignación</button>
+            <button class="cancel" type="button" (click)="eliminarTurno()">Eliminar</button>
+            <button class="add-employee" type="submit" [disabled]="actualizarHorarioForm.invalid">Editar Asignación</button>
         </div>
       </form>
     </div>

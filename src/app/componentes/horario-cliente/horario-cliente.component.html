@@ -1,0 +1,25 @@
+<app-header-cliente></app-header-cliente>
+<main>
+    <h1>Mis Horarios</h1>
+    <p>Consulta tus horarios asignados y próximas actividades</p>
+
+    <div class="info-container">
+        <div class="info-item">
+            <p>Esta semana</p>
+            <h2>4 Turnos</h2>
+        </div>
+        <div class="info-item">
+            <p>Horas totales</p>
+            <h2>15 Horas</h2>
+        </div>
+        <div class="info-item">
+            <p>Total asignaciones</p>
+            <h2>4</h2>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <full-calendar [options]="calendarOptions"></full-calendar>
+        <div class="detalle-evento"></div>
+    </div>
+</main>

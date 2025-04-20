@@ -1,31 +1,19 @@
 import { Component } from '@angular/core';
+import { HeaderComponent } from "../header/header.component";
+import { HeaderClienteComponent } from "../header-cliente/header-cliente.component";
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { HeaderComponent } from "../header/header.component";
-import { AsignacionHorarioComponent } from "../asignacion-horario/asignacion-horario.component";
-import { CommonModule } from '@angular/common';
-import { enUS, es } from 'date-fns/locale';
-import { format } from 'date-fns'
-import { EdicionHorarioComponent } from "../edicion-horario/edicion-horario.component";
 
 @Component({
-  selector: 'app-horario',
+  selector: 'app-horario-cliente',
   standalone: true,
-  imports: [FullCalendarModule, HeaderComponent, AsignacionHorarioComponent, CommonModule, EdicionHorarioComponent],
-  templateUrl: './horario.component.html',
-  styleUrl: './horario.component.css'
+  imports: [HeaderComponent, HeaderClienteComponent, FullCalendarModule],
+  templateUrl: './horario-cliente.component.html',
+  styleUrl: './horario-cliente.component.css'
 })
-export class HorarioComponent {
-
-  // Varibles
-  totalAsignaciones: number = 24;
-  horasAsignadas: number = 156;
-  empleadosAsignados: number = 12;
-  verAsignacion: boolean = false;
-  verEdicion: boolean = false;
-  fechaSeleccionada!: string;
+export class HorarioClienteComponent {
 
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, interactionPlugin],
@@ -45,18 +33,9 @@ export class HorarioComponent {
     ]
   }
 
-  handleDateClick(arg: any) {
-    const clickedDate = new Date(arg.dateStr);
-    const today = new Date();
 
-    clickedDate.setHours(0, 0, 0, 0);
-    today.setHours(0, 0, 0, 0);
-
-    if (clickedDate >= today) {
-      this.verAsignacion = true;
-      const fechaLocal = new Date(clickedDate.getFullYear(), clickedDate.getMonth(), clickedDate.getDate()+1)
-      this.fechaSeleccionada = format(fechaLocal, "EEEE, d 'de' MMMM", { locale: es });
-    }
+  generarFecha(fechaISO: string): Date {
+    return new Date(fechaISO);
   }
 
   estilizarCeldaDia(info: any) {
@@ -73,10 +52,6 @@ export class HorarioComponent {
     }
   }
 
-  generarFecha(fechaISO: string): Date {
-    return new Date(fechaISO);
-  }
-
   handleEventClick(info: any) {
     const clickedDate = new Date(info.event.startStr);
     console.log(clickedDate);
@@ -86,9 +61,23 @@ export class HorarioComponent {
     today.setHours(0, 0, 0, 0);
 
     if (clickedDate >= today) {
-      this.verEdicion = true;
+      // this.verEdicion = true;
       // const fechaLocal = new Date(clickedDate.getFullYear(), clickedDate.getMonth(), clickedDate.getDate()+1)
       // this.fechaSeleccionada = format(fechaLocal, "EEEE, d 'de' MMMM", { locale: es });
     }
   }
+
+    handleDateClick(arg: any) {
+      const clickedDate = new Date(arg.dateStr);
+      const today = new Date();
+  
+      clickedDate.setHours(0, 0, 0, 0);
+      today.setHours(0, 0, 0, 0);
+  
+      if (clickedDate >= today) {
+        // this.verAsignacion = true;
+        const fechaLocal = new Date(clickedDate.getFullYear(), clickedDate.getMonth(), clickedDate.getDate()+1)
+        // this.fechaSeleccionada = format(fechaLocal, "EEEE, d 'de' MMMM", { locale: es });
+      }
+    }
 }

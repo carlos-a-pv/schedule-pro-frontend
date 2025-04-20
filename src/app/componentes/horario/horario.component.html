@@ -32,4 +32,9 @@
         (closeModalEvent)="verAsignacion = false"
         [fechaSeleccionada]="fechaSeleccionada"
     ></app-asignacion-horario>
+
+    <app-edicion-horario
+        *ngIf="verEdicion"
+        (closeModalEvent)="verEdicion = false"
+    ></app-edicion-horario>
 </div>

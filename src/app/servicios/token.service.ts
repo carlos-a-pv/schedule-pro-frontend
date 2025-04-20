@@ -37,7 +37,7 @@ export class TokenService {
     }else{
       this.setToken(token);
       const rol = this.getRol();
-      let destino = (rol == "ADMINISTRADOR") ? "dashboard" : "home";
+      let destino = (rol == "ADMINISTRADOR") ? "dashboard" : "mis-horarios";
       this.router.navigate([destino]).then(()=>{
         window.location.reload();
       });

@@ -29,5 +29,7 @@
 
     <app-asignacion-horario 
         *ngIf="verAsignacion"
+        (closeModalEvent)="verAsignacion = false"
+        [fechaSeleccionada]="fechaSeleccionada"
     ></app-asignacion-horario>
 </div>

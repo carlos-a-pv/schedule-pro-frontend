@@ -16,6 +16,9 @@
     position: relative;
     transition: background-color 0.3s;
 }
+.hover-cell:hover {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro cuando hover */
+}
   
 .hover-cell::after {
     content: '+';
@@ -25,7 +28,7 @@
     transform: translate(-50%, -50%) scale(0.5);
     opacity: 0;
     font-size: 1.5rem;
-    color: #555;
+    color: #ffffff;
     pointer-events: none;
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -33,4 +36,24 @@
 .hover-cell:hover::after {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
+}
+.hover-cell:hover .fc-event {
+    opacity: 0;
+}
+
+.past-cell {
+    background-color: #f0f0f0 !important;
+    cursor: not-allowed;
+    position: relative;
+    opacity: 0.7;
+}
+
+.past-cell::after {
+    content: '🚫';
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: 0.9rem;
+    opacity: 0.6;
+    pointer-events: none;
 }

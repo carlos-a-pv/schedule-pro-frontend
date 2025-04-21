@@ -57,6 +57,12 @@ ngOnInit() {
     
     this.adminService.editarTurno(actualizarTurnoDTO).subscribe({
       next: (response) => {
+        Swal.fire({
+          title: 'Turno actualizado',
+          text: 'El turno se ha actualizado correctamente',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
         this.cleanFields();
       },
       error: (error) => {

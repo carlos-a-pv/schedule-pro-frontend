@@ -35,7 +35,7 @@ export class HorarioClienteComponent {
     eventClick: this.handleEventClick.bind(this),
     initialView: 'dayGridMonth',
     weekends: true,
-    dayCellDidMount: this.estilizarCeldaDia.bind(this),
+    // dayCellDidMount: this.estilizarCeldaDia.bind(this),
   }
 
 
@@ -43,19 +43,19 @@ export class HorarioClienteComponent {
     return new Date(fechaISO);
   }
 
-  estilizarCeldaDia(info: any) {
-    const cellDate = new Date(info.date);
-    const today = new Date();
+  // estilizarCeldaDia(info: any) {
+  //   const cellDate = new Date(info.date);
+  //   const today = new Date();
   
-    cellDate.setHours(0, 0, 0, 0);
-    today.setHours(0, 0, 0, 0);
+  //   cellDate.setHours(0, 0, 0, 0);
+  //   today.setHours(0, 0, 0, 0);
   
-    if (cellDate < today) {
-      info.el.classList.add('past-cell');
-    } else {
-      info.el.classList.add('hover-cell');
-    }
-  }
+  //   if (cellDate < today) {
+  //     info.el.classList.add('past-cell');
+  //   } else {
+  //     info.el.classList.add('hover-cell');
+  //   }
+  // }
 
   handleEventClick(info: any) {
 

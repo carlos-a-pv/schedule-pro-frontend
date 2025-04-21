@@ -59,11 +59,15 @@ export class AdministradorService {
   }
 
   public editarTurno(turnoDTO: actualizarTurnoDTO): Observable<MensajeDTO> {
-    return this.http.put<MensajeDTO>(`${this.adminURL}/editar-turno`, turnoDTO);
+    return this.http.put<MensajeDTO>(`${this.adminURL}/editar-turno`, {body: turnoDTO});
   }
 
   public eliminarTurno(turnoDTO: EliminarTurnoDTO): Observable<MensajeDTO> {
-    return this.http.delete<MensajeDTO>(`${this.adminURL}/eliminar-turno`);
+    return this.http.delete<MensajeDTO>(`${this.adminURL}/eliminar-turno`, { body: turnoDTO });
+  }
+
+  public obtenerTurnosPorEmpleado(id: string): Observable<itemTurnoDTO[]> {
+    return this.http.get<itemTurnoDTO[]>(`${this.adminURL}/listar-turnos-empleado/${id}`);
   }
 
 }

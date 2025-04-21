@@ -51,9 +51,14 @@ export class AsignacionHorarioComponent {
     crearTurnoDTO.fechaTurno = fechaDate;
     crearTurnoDTO.sede = "Sede "+Math.floor(Math.random() * 10);
 
-    console.log(crearTurnoDTO);
     this.adminService.asignarTurno(crearTurnoDTO).subscribe({
       next: () => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Asignación exitosa',
+          text: 'El turno ha sido asignado correctamente.',
+          
+        });
         this.asignarHorarioForm.reset();
         this.closeModalEvent.emit();
       },

@@ -51,12 +51,21 @@ ngOnInit() {
     const fechaDate = parse(this.fechaSeleccionada + ` ${añoActual}`, "EEEE, d 'de' MMMM yyyy", new Date(), { locale: es });
     actualizarTurnoDTO.fechaTurno = fechaDate;
 
+    console.log('Actualizar Turno DTO:', actualizarTurnoDTO);
+
+    
     this.adminService.editarTurno(actualizarTurnoDTO).subscribe({
       next: (response) => {
         this.cleanFields();
       },
       error: (error) => {
-        console.error('Error al actualizar el turno:', error);
+        Swal.fire({
+          title: 'Error',
+          text: 'No se ha podido actualizar el turno',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+        this.cleanFields();
       }
     });
   }
@@ -97,7 +106,12 @@ ngOnInit() {
         this.cleanFields();
       },
       error: (error) => {
-        console.error('Error al eliminar el turno:', error);
+        Swal.fire({
+          title: 'Error',
+          text: 'No se ha podido eliminar el turno',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
       }
     });
   }

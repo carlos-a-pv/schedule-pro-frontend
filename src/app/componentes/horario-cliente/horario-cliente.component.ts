@@ -5,6 +5,10 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { AdministradorService } from '../../servicios/administrador.service';
+import { itemTurnoDTO } from '../../dto/item-turno-dto';
+import { TokenService } from '../../servicios/token.service';
+import { EmpleadoServiceService } from '../../servicios/empleado-service.service';
 
 @Component({
   selector: 'app-horario-cliente',
@@ -15,6 +19,12 @@ import interactionPlugin from '@fullcalendar/interaction';
 })
 export class HorarioClienteComponent {
 
+    eventList: itemTurnoDTO[] = []
+
+  constructor(private empleadoService: EmpleadoServiceService, private tokenService: TokenService) { 
+    this.obtenerTurnos();
+  }
+
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, interactionPlugin],
     dateClick: (arg) => this.handleDateClick(arg),
@@ -22,15 +32,6 @@ export class HorarioClienteComponent {
     initialView: 'dayGridMonth',
     weekends: true,
     dayCellDidMount: this.estilizarCeldaDia.bind(this),
-    events: [
-      { title: 'Reunión equipo A', start: this.generarFecha('2025-04-08T10:00:00') },
-      { title: 'Reunión equipo A', start: this.generarFecha('2025-04-08T10:00:00') },
-      { title: 'Capacitación interna', start: this.generarFecha('2025-04-12T14:00:00') },
-      { title: 'Entrega reporte', start: this.generarFecha('2025-04-15T09:00:00') },
-      { title: 'Llamada con cliente', start: this.generarFecha('2025-04-20T11:00:00') },
-      { title: 'Cierre mensual', start: this.generarFecha('2025-04-25T16:00:00') },
-      { title: 'Taller técnico', start: this.generarFecha('2025-04-28T13:00:00') }
-    ]
   }
 
 
@@ -80,4 +81,23 @@ export class HorarioClienteComponent {
         // this.fechaSeleccionada = format(fechaLocal, "EEEE, d 'de' MMMM", { locale: es });
       }
     }
+
+  obtenerTurnos() {
+    const idEmpleado = ""; 
+    this.empleadoService.obtenerTurnos(idEmpleado).subscribe({
+      next: (response) => {
+        this.eventList = response;
+        this.calendarOptions.events = this.eventList.map(event => ({
+          id: event.idTurno,
+          title: event.horaEntrada.slice(0,2) + "-" + event.horaSalida.slice(0,2)+": " + event.nombreEmpleado,
+          start: event.fechaTurno,
+          end: event.fechaTurno,
+          allDay: true
+        }));
+      },
+      error: (error) => {
+        console.error('Error al obtener los turnos:', error);
+      }
+    });
+  }
 }

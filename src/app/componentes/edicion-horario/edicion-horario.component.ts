@@ -41,6 +41,7 @@ ngOnInit() {
           horaInicio: ['', [Validators.required]],
           horaFin: ['', [Validators.required]],
           empleado: ['', [Validators.required]],
+          sede: ['', [Validators.required]],
         });
   }
 
@@ -88,6 +89,7 @@ ngOnInit() {
       horaInicio: this.eventoSeleccionado.horaEntrada,
       horaFin: this.eventoSeleccionado.horaSalida,
       empleado: this.eventoSeleccionado.idEmpleado,
+      sede: this.eventoSeleccionado.sede,
       
     });
   }

@@ -32,7 +32,7 @@ export class AsignacionHorarioComponent {
           idEmpleado: ['', [Validators.required]],
           horaEntrada: ['', [Validators.required]],
           horaSalida: ['', [Validators.required]],
-          
+          sede: ['', [Validators.required]],
         });
 
   } 
@@ -49,7 +49,7 @@ export class AsignacionHorarioComponent {
 
     const fechaDate = parse(this.fechaSeleccionada + ` ${añoActual}`, "EEEE, d 'de' MMMM yyyy", new Date(), { locale: es });
     crearTurnoDTO.fechaTurno = fechaDate;
-    crearTurnoDTO.sede = "Sede "+Math.floor(Math.random() * 10);
+    // crearTurnoDTO.sede = "Sede "+Math.floor(Math.random() * 10);
 
     this.adminService.asignarTurno(crearTurnoDTO).subscribe({
       next: () => {

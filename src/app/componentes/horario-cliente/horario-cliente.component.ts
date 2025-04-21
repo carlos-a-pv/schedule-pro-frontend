@@ -13,7 +13,7 @@ import { EmpleadoServiceService } from '../../servicios/empleado-service.service
 @Component({
   selector: 'app-horario-cliente',
   standalone: true,
-  imports: [HeaderComponent, HeaderClienteComponent, FullCalendarModule],
+  imports: [HeaderClienteComponent, FullCalendarModule],
   templateUrl: './horario-cliente.component.html',
   styleUrl: './horario-cliente.component.css'
 })

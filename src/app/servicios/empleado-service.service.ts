@@ -12,6 +12,6 @@ export class EmpleadoServiceService {
   constructor(private htttp:HttpClient) { }
 
   public obtenerTurnos(idEmpleado: String): Observable<itemTurnoDTO[]> {
-    return this.htttp.get<itemTurnoDTO[]>(`${this.empleadoURL}/listar-turnos/${idEmpleado}`);
+    return this.htttp.get<itemTurnoDTO[]>(`${this.empleadoURL}/listar-turnos-empleado/${idEmpleado}`);
   }
 }

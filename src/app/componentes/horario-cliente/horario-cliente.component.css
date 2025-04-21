@@ -1,0 +1,87 @@
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 0 30px;
+}
+
+main .info-container {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+    
+}
+
+main .info-container .info-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /* padding: 0 5rem; */
+    width: 100%;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    
+}
+
+.schedule-container {
+    width: 75%;
+}
+
+.schedule-container full-calendar:hover {
+    cursor: pointer;
+}
+
+.main-container .detalle-evento {
+    width: 20%;
+    height: 50%;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.calendar-container {
+    display: inline-block; 
+    background-color: rgba(225, 218, 116, 0.56);
+    border-radius: 50%;
+    width: 50px;
+    padding: 10px;
+}
+
+.calendar-container img {
+    display: block; 
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    /* padding: 10px; */
+}
+
+.cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.2s;
+}
+
+.cerrar:hover {
+    color: red;
+}
+
+
+.detalle-evento-info {
+    position: relative;
+}

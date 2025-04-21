@@ -19,15 +19,19 @@ import { EmpleadoServiceService } from '../../servicios/empleado-service.service
 })
 export class HorarioClienteComponent {
 
-    eventList: itemTurnoDTO[] = []
+  eventList: itemTurnoDTO[] = []
+  idEmpleado: string = "";
+  verDetalleEvento: boolean = false;
+  eventoSeleccionado: itemTurnoDTO | null = null;
 
   constructor(private empleadoService: EmpleadoServiceService, private tokenService: TokenService) { 
+    this.idEmpleado = this.tokenService.getIdCuenta() ?? '';
     this.obtenerTurnos();
   }
 
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, interactionPlugin],
-    dateClick: (arg) => this.handleDateClick(arg),
+    // dateClick: (arg) => this.handleDateClick(arg),
     eventClick: this.handleEventClick.bind(this),
     initialView: 'dayGridMonth',
     weekends: true,
@@ -54,37 +58,39 @@ export class HorarioClienteComponent {
   }
 
   handleEventClick(info: any) {
-    const clickedDate = new Date(info.event.startStr);
-    console.log(clickedDate);
-    const today = new Date();
 
-    clickedDate.setHours(0, 0, 0, 0);
-    today.setHours(0, 0, 0, 0);
+    this.verDetalleEvento = true;
+    this.eventoSeleccionado = this.eventList.find(event => event.idTurno === info.event.id) || null;
+    // const clickedDate = new Date(info.event.startStr);
+    // console.log(clickedDate);
+    // const today = new Date();
 
-    if (clickedDate >= today) {
-      // this.verEdicion = true;
-      // const fechaLocal = new Date(clickedDate.getFullYear(), clickedDate.getMonth(), clickedDate.getDate()+1)
-      // this.fechaSeleccionada = format(fechaLocal, "EEEE, d 'de' MMMM", { locale: es });
-    }
+    // clickedDate.setHours(0, 0, 0, 0);
+    // today.setHours(0, 0, 0, 0);
+
+    // if (clickedDate >= today) {
+    //   // this.verEdicion = true;
+    //   // const fechaLocal = new Date(clickedDate.getFullYear(), clickedDate.getMonth(), clickedDate.getDate()+1)
+    //   // this.fechaSeleccionada = format(fechaLocal, "EEEE, d 'de' MMMM", { locale: es });
+    // }
   }
 
-    handleDateClick(arg: any) {
-      const clickedDate = new Date(arg.dateStr);
-      const today = new Date();
+    // handleDateClick(arg: any) {
+    //   const clickedDate = new Date(arg.dateStr);
+    //   const today = new Date();
   
-      clickedDate.setHours(0, 0, 0, 0);
-      today.setHours(0, 0, 0, 0);
+    //   clickedDate.setHours(0, 0, 0, 0);
+    //   today.setHours(0, 0, 0, 0);
   
-      if (clickedDate >= today) {
-        // this.verAsignacion = true;
-        const fechaLocal = new Date(clickedDate.getFullYear(), clickedDate.getMonth(), clickedDate.getDate()+1)
-        // this.fechaSeleccionada = format(fechaLocal, "EEEE, d 'de' MMMM", { locale: es });
-      }
-    }
+    //   if (clickedDate >= today) {
+    //     // this.verAsignacion = true;
+    //     const fechaLocal = new Date(clickedDate.getFullYear(), clickedDate.getMonth(), clickedDate.getDate()+1)
+    //     // this.fechaSeleccionada = format(fechaLocal, "EEEE, d 'de' MMMM", { locale: es });
+    //   }
+    // }
 
   obtenerTurnos() {
-    const idEmpleado = ""; 
-    this.empleadoService.obtenerTurnos(idEmpleado).subscribe({
+    this.empleadoService.obtenerTurnos(this.idEmpleado).subscribe({
       next: (response) => {
         this.eventList = response;
         this.calendarOptions.events = this.eventList.map(event => ({
@@ -99,5 +105,10 @@ export class HorarioClienteComponent {
         console.error('Error al obtener los turnos:', error);
       }
     });
+  }
+
+  cerrarModal() {
+    this.verDetalleEvento = false;
+    this.eventoSeleccionado = null;
   }
 }

@@ -64,7 +64,7 @@ export class TokenService {
       const values = this.decodePayload(token);
       return values.id;
     }else{
-      return window.sessionStorage.getItem("idCuenta");
+      return window.sessionStorage.getItem("id");
     }
   }
 

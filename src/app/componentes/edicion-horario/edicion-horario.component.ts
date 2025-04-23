@@ -38,8 +38,8 @@ ngOnInit() {
 
   private crearFormulario() {
     this.actualizarHorarioForm = this.formBuilder.group({
-          horaInicio: ['', [Validators.required]],
-          horaFin: ['', [Validators.required]],
+          horaEntrada: ['', [Validators.required]],
+          horaSalida: ['', [Validators.required]],
           empleado: ['', [Validators.required]],
           sede: ['', [Validators.required]],
         });
@@ -92,8 +92,8 @@ ngOnInit() {
 
   llenarCampos() {
     this.actualizarHorarioForm.patchValue({
-      horaInicio: this.eventoSeleccionado.horaEntrada,
-      horaFin: this.eventoSeleccionado.horaSalida,
+      horaEntrada: this.eventoSeleccionado.horaEntrada,
+      horaSalida: this.eventoSeleccionado.horaSalida,
       empleado: this.eventoSeleccionado.idEmpleado,
       sede: this.eventoSeleccionado.sede,
       

@@ -59,7 +59,7 @@ export class AdministradorService {
   }
 
   public editarTurno(turnoDTO: actualizarTurnoDTO): Observable<MensajeDTO> {
-    return this.http.put<MensajeDTO>(`${this.adminURL}/editar-turno`, {body: turnoDTO});
+    return this.http.put<MensajeDTO>(`${this.adminURL}/editar-turno`, turnoDTO);
   }
 
   public eliminarTurno(turnoDTO: EliminarTurnoDTO): Observable<MensajeDTO> {

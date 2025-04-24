@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 main {
     display: flex;
     flex-direction: column;
@@ -27,12 +33,32 @@ main .info-container .info-item {
     
 }
 
+main h3 {
+    font-weight: bold;
+}
+
+main > p {
+    color: var(--secondary-color);
+}
+
 .main-container {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
     /* overflow: hidden; */
     
+}
+
+.info-container .info-item p{
+    color: var(--secondary-color);
+}
+
+.info-container .info-item h4{
+    font-weight: bold;
+}
+
+.info-item {
+    margin: 0;
 }
 
 .schedule-container {
@@ -69,6 +95,21 @@ main .info-container .info-item {
     /* padding: 10px; */
 }
 
+.calendar-container-blue{
+    display: inline-block; 
+    background-color: #444fcacb;
+    border-radius: 50%;
+    width: 50px;
+    padding: 10px;
+}
+.calendar-container-blue img {
+    display: block; 
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    /* padding: 10px; */
+}
+
 .cerrar {
     position: absolute;
     top: 10px;
@@ -87,4 +128,24 @@ main .info-container .info-item {
 
 .detalle-evento-info {
     position: relative;
+}
+
+.btn-solicitar-cambio{
+    padding: 10px 40px;
+    border-radius: 10px;
+    display: flex;
+    border: 1px solid #ccc;
+    background-color: transparent;
+
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+
+}
+
+.btn-solicitar-cambio:hover{
+    cursor: pointer;
+    background-color: var(--primary-color-button);
+    color: white;
 }

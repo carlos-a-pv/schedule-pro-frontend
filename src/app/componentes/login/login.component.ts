@@ -33,7 +33,6 @@ export class LoginComponent {
   public login(): void {
 
     this.spinner.show();
-
     const loginDTO = this.loginForm.value as LoginDTO;
     
     this.authService.login(loginDTO).subscribe({
@@ -41,11 +40,14 @@ export class LoginComponent {
         this.tokenService.login(data.respuesta.token);
       },
       error: (error) => {
+        this.spinner.hide();
         Swal.fire({
             icon: 'error',
-            title: 'Error',
+            title: 'Credenciales incorrectas',
             text: error.error.respuesta
+            
         });
+        this.loginForm.reset();
       },
       complete: () => {
         this.spinner.hide();

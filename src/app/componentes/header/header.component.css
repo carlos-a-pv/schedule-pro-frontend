@@ -54,25 +54,35 @@ nav {
     /* justify-content: space-between; */
     margin: 0 15px;
     list-style: none;
-    color: #2E2935;
+    
     font-weight: 400;
+    text-decoration: none;
+    
+    
+    
 }
 
 .container-items ul li button{
-    background-color: #5D47C9;
+    /* background-color: #5D47C9; */
 
     border: none;
     border-radius: 5px;
     padding: 2px 16px;
 }
-.container-items ul li a button {
-    color: white;
+.container-items ul li a{
     text-decoration: none;
+    color: #2E2935;
+    /* color: #000; */
 }
 
-.container-items ul li:hover{
+.container-items ul li a:hover{
     /* text-decoration: underline; */
     cursor: pointer;
     color: #aaaaaa;
     /* scale: 1.1; */
+}
+
+.active {
+    color: #aaaaaa !important;
+    /* font-weight: 600; */
 }

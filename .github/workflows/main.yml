@@ -1,5 +1,3 @@
-
-
 name: Schedule Pro
 
 on:
@@ -7,27 +5,33 @@ on:
     branches: ["master"]
 
 jobs: 
-  despliegue:
+  CI_CD:
     runs-on: ubuntu-latest
 
     steps:
-        - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-        - name: Muestra el contenido
-          run: ls -la
+      - name: Muestra el contenido
+        run: ls -la
 
-        - uses: actions/setup-node@v4
-        - run: npm install --no-audit --no-found
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-        # - name: Instalacion de angular
-        # - uses: actions/angular-github-actions
-        - run: npm install -g @angular/cli@latest
-        - run: ng version
-        - run: ng build 
-        
-        - run: npm install -g firebase-tools
-        - run: firebase login
-        # - run: firebase deploy --token ${{ secrets.FIREBASE_TOKEN }} 
+      - name: Instalación de dependencias
+        run: npm install --no-audit --no-fund
+
+      - name: Instalación de Angular CLI
+        run: npm install -g @angular/cli@latest
+
+      - name: Compilar proyecto Angular
+        run: ng build --configuration=production
+
+      - name: Instalar Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Desplegar a Firebase
+        run: firebase deploy --only hosting --token "${{ secrets.FIREBASE_TOKEN }}"
 
 
     

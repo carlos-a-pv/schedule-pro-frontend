@@ -46,6 +46,7 @@
     .stats article {
       flex: 1 1 100%;
     }
+
   }
 
 .stats article p {
@@ -109,7 +110,7 @@
   word-break: break-word;
 }
 
-/* 🔽 Responsive: diseño tipo tarjeta para móviles */
+
 @media (max-width: 768px) {
   .grid-container {
     display: flex;
@@ -118,7 +119,7 @@
   }
 
   .grid-header {
-    display: none; /* Oculta los encabezados de columna */
+    display: none; 
   }
 
   .grid-item {
@@ -130,8 +131,6 @@
     background: #f9f9f9;
     flex-wrap: wrap;
   }
-
-  /* Usa :before para mostrar el título de cada campo */
   .grid-item:nth-child(5n+1)::before { content: "Empleado"; font-weight: bold; }
   .grid-item:nth-child(5n+2)::before { content: "Departamento"; font-weight: bold; }
   .grid-item:nth-child(5n+3)::before { content: "Cargo"; font-weight: bold; }
@@ -145,14 +144,18 @@
     color: #555;
   }
 
-  /* Asegura que la imagen y el componente de opciones no se desplacen raro */
   .grid-item img {
     max-width: 24px;
     cursor: pointer;
-  }
-  
+    margin-left: 25px;
+  }  
 }
 
+@media (max-width: 800px) {
+    .management-employee button span {
+      display: none;
+    }
+}
 .grid-item img:hover {
     cursor: pointer;
 }

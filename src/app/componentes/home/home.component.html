@@ -42,7 +42,7 @@
 
         <button (click)="showModal = true">
             <img src="/images/add-friend.svg" alt="" width="20px" height="20px">
-            Agregar Empleado
+            <span>Agregar Empleado</span> 
         </button>
     </div>
 
@@ -51,8 +51,8 @@
           <h1>Agregar Nuevo Empleado</h1>
           <form [formGroup]="crearEmpleadoForm" (ngSubmit)="addEmployee()" novalidate>
             
-            <div>
-                <label for="cedula">Cedula</label>
+            <div class="form1">
+                <label for="cedula">Cedula: </label><br>
                 <input type="text" formControlName="cedula">
             </div>
             <div class="form1">

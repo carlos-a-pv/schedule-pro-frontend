@@ -69,6 +69,7 @@ export class HomeComponent {
           icon: 'error',
           confirmButtonText: 'Aceptar'
         })
+        this.crearEmpleadoForm.reset();
       }
     })
 

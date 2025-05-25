@@ -54,7 +54,7 @@ export class UpdateComponent {
       next: (response) => {
         this.empleado = response.respuesta;
         this.actualizarEmpleadoForm.patchValue({
-          cdeula: this.empleado.cedula,
+          cedula: this.empleado.cedula,
           nombre: this.empleado.nombre,
           apellido: this.empleado.apellido,
           email: this.empleado.email,

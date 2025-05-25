@@ -30,10 +30,10 @@ jobs:
       - name: Instalar Firebase CLI
         run: npm install -g firebase-tools
 
-      - name: Verificar token cargado
-        run: ls -la ~/.firebase
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      # - name: Verificar token cargado
+      #   run: ls -la ~/.firebase
+      #   env:
+      #     FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
       - name: Desplegar a Firebase
         run: firebase deploy --only hosting --token "${{ secrets.FIREBASE_TOKEN }}"

@@ -102,7 +102,7 @@
             <div class="grid-item">{{item.cargo}}</div>
             <div class="grid-item">{{item.email}}</div>
             <div class="grid-item">
-                <img src="/images/options.svg" alt="icono de opciones" (click)="openOptions($event, item.email); $event.stopPropagation()">
+                <img src="/images/options.svg" alt="icono de opciones" (click)="openOptions($event, item.email); $event.stopPropagation()" width="20px" height="20px">
                 <app-options 
                     *ngIf="selectedEmployee === item.email"
                     [isOpen]="isOptionsOpen" 
@@ -113,7 +113,7 @@
             </div>
         }
         
-      </div>    
+    </div>    
 </main>
     
 <app-footer></app-footer>

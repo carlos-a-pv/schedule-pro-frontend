@@ -9,6 +9,7 @@ header {
 nav {
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 
 .container-icon {
@@ -42,6 +43,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     margin-right: 20px;
+    /* position: relative; */
 }
 
 .container-items ul{
@@ -57,8 +59,6 @@ nav {
     
     font-weight: 400;
     text-decoration: none;
-    
-    
     
 }
 
@@ -86,3 +86,42 @@ nav {
     color: #aaaaaa !important;
     /* font-weight: 600; */
 }
+
+.menu-toggle {
+    display: none;
+    background: none;
+    color: white;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+  }
+
+
+/* MEDIA QUERY */
+@media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+  
+    ul {
+      display: none;
+      flex-direction: column;
+      /* position: absolute; */
+      top: 100%;
+      left: 0;
+      background: #444;
+      width: 100%;
+      padding: 10px 0;
+      width: 100%;
+    }
+  
+    ul.show {
+      display: flex;
+    }
+  
+    ul li {
+      padding: 10px;
+      text-align: center;
+    }
+  }
+

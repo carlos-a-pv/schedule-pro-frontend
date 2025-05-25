@@ -23,7 +23,7 @@ jobs:
         # - uses: actions/angular-github-actions
         - run: npm install -g @angular/cli@latest
         - run: ng version
-        # - run: ng build 
+        - run: ng build 
 
 
     

@@ -11,8 +11,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-        - name: 'Hello world'
-          run: echo "Hello world"
+        - uses: actions/checkout@v4
+
         - name: Muestra el contenido
           run: ls -la
+
+        - uses: actions/setup-node@v4
+        - run: npm install --no-audit --no-found
+
+        # - name: Instalacion de angular
+        - uses: actions/angular-github-actions
+        - run: npm install -g @angular/cli@latest
+        - run: ng build 
+
+
     

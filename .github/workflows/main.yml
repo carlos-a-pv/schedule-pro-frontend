@@ -20,7 +20,8 @@ jobs:
         - run: npm install --no-audit --no-found
 
         # - name: Instalacion de angular
-        # - uses: actions/angular-github-actions
+        - uses: actions/angular-github-actions
+        - run: ng version
         # - run: npm install -g @angular/cli@latest
         # - run: ng build 
 

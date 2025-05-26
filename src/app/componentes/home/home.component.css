@@ -202,13 +202,15 @@
 
 }
 
-.form1 .special {
-  /* margin-right: 0px !important; */
-  /* background-color: red; */
+.form1 select {
+    padding: 10px 30px; 
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    margin: 0 10px;
 }
 
 .form1 input {
-    padding: 10px 30px; 
+    padding: 10px 20px; 
     border-radius: 5px;
     border: 1px solid #cccccc;
     margin: 0 10px;

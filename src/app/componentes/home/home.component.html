@@ -72,8 +72,22 @@
             <div class="form1">
                 <label for="">Departamento</label>
                 <label for="">Cargo</label> <br>
-                <input type="text" formControlName="departamento">
-                <input type="text" formControlName="cargo">
+                <select formControlName="departamento">
+                    <option value="" disabled selected>Seleccione un departamento</option>
+                    <option>COCINA</option>
+                    <option>SERVICIO_AL_CLIENTE</option>
+                    <option>CAJA</option>
+                    <option>COMPRAS_Y_ALMACEN</option>
+                    <option>LIMPIEZA_Y_MANTENIMIENTO</option>
+                    <option>ADMINISTRACION_Y_FINANZAS</option>
+                    <option>MARKETING_Y_VENTAS</option>
+                    <option>RECURSOS_HUMANOS</option>
+                </select>
+                <select formControlName="cargo">
+                    <option value="" disabled selected>Seleccione un cargo</option>
+                    <option>ADMINISTRADOR</option>
+                    <option>EMPLEADO</option>
+                </select>
             </div>
             
             <div class="form1">

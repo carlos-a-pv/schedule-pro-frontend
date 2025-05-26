@@ -51,6 +51,7 @@ export class HomeComponent {
   }
 
   public addEmployee(){
+    // console.log(this.crearEmpleadoForm.value);
     const crearEmpleadoDTO = this.crearEmpleadoForm.value as CrearEmpleadoDTO;
     this.adminService.crearEmpleado(crearEmpleadoDTO).subscribe({
       next: (mensaje) => {

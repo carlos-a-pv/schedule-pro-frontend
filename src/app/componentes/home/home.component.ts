@@ -22,6 +22,7 @@ import { OptionsComponent } from "../options/options.component";
 })
 export class HomeComponent {
   empleados!:ItemEmpleadoDTO [];
+  empleadosFiltrados!:ItemEmpleadoDTO [];
   showModal = false;
   isOptionsOpen = false;
   optionsPosition = {x: 0, y: 0};
@@ -113,6 +114,39 @@ export class HomeComponent {
    this.selectedEmployee = email;
   this.isOptionsOpen = true;
  }
+
+ onTyping(evento : Event) {
+   const input = evento.target as HTMLInputElement;
+   const itemSearch = input.value.toLowerCase();
+   
+   console.log(typeof itemSearch );
+
+      if (itemSearch.trim() === '') {
+        this.empleados = [...this.empleados];
+        return;
+      }
+
+    this.empleadosFiltrados = this.empleados.filter((empleado) =>
+      empleado.nombre.toLowerCase().includes(itemSearch) ||
+      empleado.apellido.toLowerCase().includes(itemSearch) ||
+      empleado.email.toLowerCase().includes(itemSearch)
+    );
+
+    if (this.empleadosFiltrados.length > 0) {
+      this.empleados = [...this.empleadosFiltrados];
+    } else {
+      Swal.fire({
+        title: 'No se encontraron resultados',
+        text: 'No se encontraron empleados con ese criterio de búsqueda',
+        icon: 'info',
+        confirmButtonText: 'Aceptar'
+      });
+      this.obtenerEmpleados();
+    }
+
+
+} 
+
 
 
 }

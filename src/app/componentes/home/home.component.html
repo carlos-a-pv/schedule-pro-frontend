@@ -37,7 +37,7 @@
     </div>
 
     <div class="management-employee">
-        <input type="text" placeholder="Buscar empleados..." class="input-bg">
+        <input type="text" placeholder="Buscar empleados..." class="input-bg" (input)="onTyping($event)" value="">
         <!-- <input type="" value="Filtros" > -->
 
         <button (click)="showModal = true">

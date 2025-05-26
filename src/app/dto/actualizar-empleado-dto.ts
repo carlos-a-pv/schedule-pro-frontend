@@ -7,4 +7,5 @@ export interface ActulizarEmpleadoDTO {
     departamento: string;
     cargo: string;
     fechaContratacion: Date;
+    precioHora: number; 
 }

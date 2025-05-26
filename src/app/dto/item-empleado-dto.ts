@@ -8,4 +8,5 @@ export interface ItemEmpleadoDTO {
     departamento:string;
     cargo:string;
     fechaContratacion:Date;
+    precioHora:number;
 }

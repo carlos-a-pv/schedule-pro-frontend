@@ -39,6 +39,7 @@ export class UpdateComponent {
         departamento: ['', [Validators.required]],
         cargo: ['', [Validators.required]],
         fechaContratacion: ['', [Validators.required]],
+        precioHora: ['', [Validators.required]],
         
       });
     }
@@ -61,7 +62,8 @@ export class UpdateComponent {
           telefono: this.empleado.telefono,
           departamento: this.empleado.departamento,
           cargo: this.empleado.cargo,
-          fechaContratacion: this.empleado.fechaContratacion
+          fechaContratacion: this.empleado.fechaContratacion,
+          precioHora: this.empleado.precioHora
         });
       },
       error: (error) => {

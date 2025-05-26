@@ -45,6 +45,7 @@ export class HomeComponent {
       departamento: ['', [Validators.required]],
       cargo: ['', [Validators.required]],
       fechaContratacion: ['', [Validators.required]],
+      precioHora: ['', [Validators.required]],
       
     });
   }

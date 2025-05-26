@@ -202,6 +202,11 @@
 
 }
 
+.form1 .special {
+  /* margin-right: 0px !important; */
+  /* background-color: red; */
+}
+
 .form1 input {
     padding: 10px 30px; 
     border-radius: 5px;

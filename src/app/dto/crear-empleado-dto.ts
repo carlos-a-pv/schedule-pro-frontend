@@ -7,4 +7,5 @@ export interface CrearEmpleadoDTO {
     departamento: string;
     cargo: string;
     fechaContratacion: Date;
+    precioHora: number;
 }

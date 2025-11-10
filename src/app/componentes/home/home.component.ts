@@ -62,7 +62,7 @@ export class HomeComponent {
           icon: 'success',
           confirmButtonText: 'Aceptar'
         })
-        window.location.reload();
+        
 
       },
       error: (error) => {
@@ -72,16 +72,16 @@ export class HomeComponent {
           icon: 'error',
           confirmButtonText: 'Aceptar'
         })
-        this.crearEmpleadoForm.reset();
       }
     })
-
-    this.showModal = false;
+    
+    this.cleanFields();
   }
 
   public cleanFields() {
     this.crearEmpleadoForm.reset();
     this.showModal = false;
+    this.obtenerEmpleados();
   }
 
   public obtenerEmpleados() {

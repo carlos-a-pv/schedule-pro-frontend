@@ -1,6 +1,7 @@
 import { Builder, By, until, WebDriver } from 'selenium-webdriver';
-
 async function testAgregarEmpleado() {
+  
+  console.log('✅ Empleado agregado correctamente');
   const driver: WebDriver = await new Builder().forBrowser('chrome').build();
 
   try {
@@ -20,7 +21,6 @@ async function testAgregarEmpleado() {
     // Esperar que aparezca el nuevo empleado
     await driver.wait(until.elementLocated(By.xpath("//*[contains(text(),'Carlos')]")), 5000);
 
-    console.log('✅ Empleado agregado correctamente');
   } catch (err) {
     console.error('❌ Error al agregar empleado:', err);
   } finally {

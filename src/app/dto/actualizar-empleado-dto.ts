@@ -1,4 +1,5 @@
 export interface ActulizarEmpleadoDTO {
+    id: string;
     cedula: string;
     nombre: string;
     apellido: string;

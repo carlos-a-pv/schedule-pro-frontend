@@ -4,7 +4,7 @@ async function runTest() {
   let driver: WebDriver = await new Builder().forBrowser('chrome').build();
 
   try {
-    await driver.get('http://localhost:4200'); 
+    await driver.get('https://schedule-pro-36f5a.web.app'); 
 
     
     const userInput = await driver.wait(until.elementLocated(By.css('input[formControlName="email"]')), 5000);

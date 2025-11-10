@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { ItemEmpleadoDTO } from '../../dto/item-empleado-dto';
 import Swal from 'sweetalert2';
 import { ActulizarEmpleadoDTO } from '../../dto/actualizar-empleado-dto';
+import { id } from 'date-fns/locale';
 
 @Component({
   selector: 'app-update',
@@ -74,6 +75,8 @@ export class UpdateComponent {
 
   public updateEmployee() {
     const actualizarEmpleadoDTO = this.actualizarEmpleadoForm.value as ActulizarEmpleadoDTO;
+    actualizarEmpleadoDTO.id = this.empleado.id;
+    console.log(actualizarEmpleadoDTO);
         this.adminService.actualizarEmpleado(actualizarEmpleadoDTO).subscribe({
           next: (mensaje) => {
             Swal.fire({

@@ -24,8 +24,7 @@ export class DeleteComponent {
   }
 
   confirmDelete(){
-    const employeeId = this.idEmpleado as EliminarEmpleadoDTO;
-    this.adminService.eliminarEmpleado(employeeId).subscribe({
+    this.adminService.eliminarEmpleado(this.idEmpleado).subscribe({
       next: (mensaje) => {
         Swal.fire({
           title: 'Cuenta eliminada',
@@ -33,6 +32,7 @@ export class DeleteComponent {
           icon: 'success',
           confirmButtonText: 'Aceptar'
         })
+        
       },
       error: (error) => {
         Swal.fire({
@@ -47,7 +47,7 @@ export class DeleteComponent {
       }
 
     });
-    
+    window.location.reload();
     this.closeModal();
   }
 

@@ -15,7 +15,8 @@ import { EliminarTurnoDTO } from '../dto/eliminar-turno-dto';
 })
 export class AdministradorService {
 
-  private adminURL = "https://schedulepro.onrender.com/api/usuario/administrador";
+  private adminURL = "http://localhost:8080/api/usuario/administrador";
+  
   
 
   constructor(private http:HttpClient) { }
@@ -33,12 +34,12 @@ export class AdministradorService {
     return this.http.get<ItemEmpleadoDTO[]>(`${this.adminURL}/listar-todo`);
   }
 
-  public eliminarEmpleado(item: EliminarEmpleadoDTO): Observable<MensajeDTO> {
-    return this.http.delete<MensajeDTO>(`${this.adminURL}/eliminar-empleado`);
+  public eliminarEmpleado(id: string): Observable<MensajeDTO> {
+    return this.http.delete<MensajeDTO>(`${this.adminURL}/eliminar-empleado/${id}`);
   }
 
   public actualizarEmpleado(item: CrearEmpleadoDTO): Observable<MensajeDTO> {
-    return this.http.put<MensajeDTO>(`${this.adminURL}/actualizar-empleado`, item);
+    return this.http.put<MensajeDTO>(`${this.adminURL}/editar-empleado`, item);
   }
 
   public obtenerEmpleadoPorId(id: string): Observable<MensajeDTO> {

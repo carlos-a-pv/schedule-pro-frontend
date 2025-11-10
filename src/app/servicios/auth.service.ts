@@ -9,7 +9,8 @@ import { MensajeDTO } from '../dto/mensaje-dto';
 })
 export class AuthService {
 
-  private authURL = "https://schedule-pro-b55o.onrender.com/api/auth";
+  private authURL = "https://schedulepro.onrender.com/api/auth";
+  
   constructor(private http: HttpClient) { }
 
   public login(loginDTO: LoginDTO): Observable<MensajeDTO> {

@@ -15,7 +15,7 @@ import { EliminarTurnoDTO } from '../dto/eliminar-turno-dto';
 })
 export class AdministradorService {
 
-  private adminURL = "https://schedulepro.onrender.com/api/usuario/administrador";
+  private adminURL = "https://schedule-pro-b55o.onrender.com/api/usuario/administrador";
   
   
   

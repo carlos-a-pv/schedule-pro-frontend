@@ -7,7 +7,7 @@ import { itemTurnoDTO } from '../dto/item-turno-dto';
   providedIn: 'root'
 })
 export class EmpleadoServiceService {
-  private empleadoURL = "https://schedulepro.onrender.com/api/usuario/empleado";
+  private empleadoURL = "https://schedule-pro-b55o.onrender.com/api/usuario/empleado";
 
   constructor(private htttp:HttpClient) { }
 
